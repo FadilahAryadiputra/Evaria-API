@@ -10,16 +10,41 @@ generator client {
 }
 
 datasource db {
-  provider = "mysql"
-  url      = env("DATABASE_URL")
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
 }
 
-model Sample {
-  id        Int      @id @default(autoincrement())
-  name      String
-  code      String   @unique
+enum Role {
+  USER
+  ORGANIZER
+}
+
+model User {
+  id        String   @id @default(uuid())
+  username  String
+  email     String   @unique
+  password  String
+  role      Role
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  events     Event[]
+
+  @@map("users")
+}
+
+model Event {
+  id          String @id @default(uuid())
+  slug        String @unique
+  title       String @unique
+  description String @db.Text
+  thumbnail   String
+  content     String @db.Text
+  category    String
+  userId      String
+  user        User   @relation(fields: [userId], references: [id])
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  @@map("samples") // if you want to use snake_case format
+  @@map("events")
 }
