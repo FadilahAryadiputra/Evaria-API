@@ -10,7 +10,10 @@ import express, {
 import cors from 'cors';
 import { PORT } from './config';
 import { SampleRouter } from './routers/sample.router';
-import { AppError } from './utils/app.error';
+import { ApiError } from './utils/api-error';
+
+import "reflect-metadata";
+import { AuthRouter } from './modules/auth/auth.router';
 
 export default class App {
   private app: Express;
@@ -53,7 +56,7 @@ export default class App {
             ? 401
             : 500);
         const message =
-          error instanceof AppError || error.isOperational
+          error instanceof ApiError || error.isOperational
             ? error.message ||
               error.name === 'TokenExpiredError' ||
               error.name === 'JsonWebTokenError'
@@ -72,12 +75,13 @@ export default class App {
 
   private routes(): void {
     const sampleRouter = new SampleRouter();
+    const authRouter = new AuthRouter();
 
     this.app.get('/api', (req: Request, res: Response) => {
       res.send(`Hello, Purwadhika Student API!`);
     });
-
     this.app.use('/api/samples', sampleRouter.getRouter());
+    this.app.use('/api/auth', authRouter.getRouter());
   }
 
   public start(): void {

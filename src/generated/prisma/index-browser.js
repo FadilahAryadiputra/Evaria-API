@@ -120,35 +120,79 @@ exports.Prisma.TransactionIsolationLevel = makeStrictEnum({
   Serializable: 'Serializable'
 });
 
-exports.Prisma.SampleScalarFieldEnum = {
-  id: 'id',
-  name: 'name',
-  code: 'code',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
-};
-
 exports.Prisma.UserScalarFieldEnum = {
   id: 'id',
   username: 'username',
   email: 'email',
   password: 'password',
   role: 'role',
+  profilePicture: 'profilePicture',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  deletedAt: 'deletedAt'
 };
 
 exports.Prisma.EventScalarFieldEnum = {
   id: 'id',
   slug: 'slug',
   title: 'title',
+  category: 'category',
+  location: 'location',
+  content: 'content',
   description: 'description',
   thumbnail: 'thumbnail',
-  content: 'content',
-  category: 'category',
-  userId: 'userId',
+  startDate: 'startDate',
+  endDate: 'endDate',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  deletedAt: 'deletedAt',
+  userId: 'userId'
+};
+
+exports.Prisma.EventTicketScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  price: 'price',
+  description: 'description',
+  limit: 'limit',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  deletedAt: 'deletedAt',
+  eventId: 'eventId'
+};
+
+exports.Prisma.VoucherScalarFieldEnum = {
+  code: 'code',
+  discount: 'discount',
+  quota: 'quota',
+  expiredDate: 'expiredDate',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  deletedAt: 'deletedAt',
+  eventId: 'eventId'
+};
+
+exports.Prisma.TransactionScalarFieldEnum = {
+  id: 'id',
+  totalPrice: 'totalPrice',
+  paymentProof: 'paymentProof',
+  status: 'status',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  deletedAt: 'deletedAt',
+  userId: 'userId',
+  eventId: 'eventId',
+  voucherCode: 'voucherCode'
+};
+
+exports.Prisma.TicketScalarFieldEnum = {
+  id: 'id',
+  qrCode: 'qrCode',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  deletedAt: 'deletedAt',
+  eventTicketId: 'eventTicketId',
+  transactionId: 'transactionId'
 };
 
 exports.Prisma.SortOrder = {
@@ -160,15 +204,44 @@ exports.Prisma.QueryMode = {
   default: 'default',
   insensitive: 'insensitive'
 };
-exports.Role = exports.$Enums.Role = {
+
+exports.Prisma.NullsOrder = {
+  first: 'first',
+  last: 'last'
+};
+exports.UserRole = exports.$Enums.UserRole = {
   USER: 'USER',
   ORGANIZER: 'ORGANIZER'
 };
 
+exports.EventCategory = exports.$Enums.EventCategory = {
+  CONCERT: 'CONCERT',
+  THEATRE: 'THEATRE',
+  TALKSHOW: 'TALKSHOW',
+  ANIME: 'ANIME',
+  IDOL: 'IDOL',
+  WEBINAR: 'WEBINAR',
+  SPORT: 'SPORT',
+  ESPORT: 'ESPORT',
+  FASHION: 'FASHION'
+};
+
+exports.TransactionStatus = exports.$Enums.TransactionStatus = {
+  WAITING_PAYMENT: 'WAITING_PAYMENT',
+  WAITING_FOR_CONFIRMATION: 'WAITING_FOR_CONFIRMATION',
+  DONE: 'DONE',
+  REJECTED: 'REJECTED',
+  EXPIRED: 'EXPIRED',
+  CANCELLED: 'CANCELLED'
+};
+
 exports.Prisma.ModelName = {
-  Sample: 'Sample',
   User: 'User',
-  Event: 'Event'
+  Event: 'Event',
+  EventTicket: 'EventTicket',
+  Voucher: 'Voucher',
+  Transaction: 'Transaction',
+  Ticket: 'Ticket'
 };
 
 /**

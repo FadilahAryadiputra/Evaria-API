@@ -15,36 +15,143 @@ datasource db {
   directUrl = env("DIRECT_URL")
 }
 
-enum Role {
+enum UserRole {
   USER
   ORGANIZER
 }
 
+enum EventCategory {
+  CONCERT
+  THEATRE
+  TALKSHOW
+  ANIME
+  IDOL
+  WEBINAR
+  SPORT
+  ESPORT
+  FASHION
+}
+
+enum TransactionStatus {
+  WAITING_PAYMENT
+  WAITING_FOR_CONFIRMATION
+  DONE
+  REJECTED
+  EXPIRED
+  CANCELLED
+}
+
 model User {
-  id        String   @id @default(uuid())
-  username  String
-  email     String   @unique
-  password  String
-  role      Role
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  events     Event[]
+  id             String   @id @default(uuid())
+  username       String
+  email          String   @unique
+  password       String
+  role           UserRole @default(USER)
+  profilePicture String   @default("UserImgPlaceholder.jpg")
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+
+  events       Event[]
+  transactions Transaction[]
 
   @@map("users")
 }
 
 model Event {
-  id          String @id @default(uuid())
-  slug        String @unique
-  title       String @unique
-  description String @db.Text
+  id          String        @id @default(uuid())
+  slug        String        @unique
+  title       String        @unique
+  category    EventCategory
+  location    String
+  content     String        @db.Text
+  description String        @db.Text
   thumbnail   String
-  content     String @db.Text
-  category    String
-  userId      String
-  user        User   @relation(fields: [userId], references: [id])
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  startDate   DateTime
+  endDate     DateTime
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+
+  userId       String
+  user         User          @relation(fields: [userId], references: [id])
+  vouchers     Voucher[]
+  transactions Transaction[]
+  eventTickets EventTicket[]
 
   @@map("events")
+}
+
+model EventTicket {
+  id          String @id @default(uuid())
+  title       String
+  price       Int
+  description String
+  limit       Int
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+
+  eventId String
+  event   Event    @relation(fields: [eventId], references: [id])
+  Ticket  Ticket[]
+
+  @@map("event_tickets")
+}
+
+model Voucher {
+  code        String   @id @unique
+  discount    Int
+  quota       Int
+  expiredDate DateTime
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+
+  eventId      String
+  event        Event         @relation(fields: [eventId], references: [id])
+  transactions Transaction[]
+
+  @@map("vouchers")
+}
+
+model Transaction {
+  id           String            @id @default(uuid())
+  totalPrice   Int
+  paymentProof String?
+  status       TransactionStatus @default(WAITING_PAYMENT)
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+
+  userId  String
+  user    User     @relation(fields: [userId], references: [id])
+  eventId String
+  event   Event    @relation(fields: [eventId], references: [id])
+  voucherCode  String?
+  voucher Voucher? @relation(fields: [voucherCode], references: [code])
+  tickets Ticket[]
+
+  @@map("transactions")
+}
+
+model Ticket {
+  id     String @id @default(uuid())
+  qrCode String @default("qrPlaceholder.jpg")
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+
+  eventTicketId String
+  eventTicket   EventTicket @relation(fields: [eventTicketId], references: [id])
+  transactionId String
+  transaction   Transaction @relation(fields: [transactionId], references: [id])
+
+  @@map("tickets")
 }
