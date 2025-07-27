@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from 'express';
-import { AppError } from '../utils/app.error';
+import { ApiError } from '../utils/api-error';
 
 export class SampleController {
   async getSampleData(req: Request, res: Response, next: NextFunction) {
@@ -8,9 +8,9 @@ export class SampleController {
 
       /*
          📒Docs:
-         Using `AppError Class` for Error Handle Exception
+         Using `ApiError Class` for Error Handle Exception
       */
-      if (!sample) throw new AppError('Sample data is not found', 404);
+      if (!sample) throw new ApiError('Sample data is not found', 404);
 
       res.status(200).json({
         success: true,
