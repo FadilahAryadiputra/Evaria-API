@@ -126,6 +126,19 @@ exports.Prisma.UserScalarFieldEnum = {
   email: 'email',
   password: 'password',
   role: 'role',
+  point: 'point',
+  profilePicture: 'profilePicture',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  deletedAt: 'deletedAt'
+};
+
+exports.Prisma.OrganizerScalarFieldEnum = {
+  id: 'id',
+  username: 'username',
+  email: 'email',
+  password: 'password',
+  role: 'role',
   profilePicture: 'profilePicture',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
@@ -143,10 +156,12 @@ exports.Prisma.EventScalarFieldEnum = {
   thumbnail: 'thumbnail',
   startDate: 'startDate',
   endDate: 'endDate',
+  startTime: 'startTime',
+  endTime: 'endTime',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
   deletedAt: 'deletedAt',
-  userId: 'userId'
+  organizerId: 'organizerId'
 };
 
 exports.Prisma.EventTicketScalarFieldEnum = {
@@ -174,6 +189,7 @@ exports.Prisma.VoucherScalarFieldEnum = {
 
 exports.Prisma.TransactionScalarFieldEnum = {
   id: 'id',
+  pointUsed: 'pointUsed',
   totalPrice: 'totalPrice',
   paymentProof: 'paymentProof',
   status: 'status',
@@ -182,6 +198,7 @@ exports.Prisma.TransactionScalarFieldEnum = {
   deletedAt: 'deletedAt',
   userId: 'userId',
   eventId: 'eventId',
+  organizerId: 'organizerId',
   voucherCode: 'voucherCode'
 };
 
@@ -237,6 +254,7 @@ exports.TransactionStatus = exports.$Enums.TransactionStatus = {
 
 exports.Prisma.ModelName = {
   User: 'User',
+  Organizer: 'Organizer',
   Event: 'Event',
   EventTicket: 'EventTicket',
   Voucher: 'Voucher',
