@@ -1,5 +1,4 @@
 import { Prisma } from '../../generated/prisma';
-import { PaginationQueryParams } from '../pagination/dto/pagination.dto';
 import { PrismaService } from '../prisma/prisma.service';
 import { GetEventsDTO } from './dto/get-events.dto';
 
@@ -11,12 +10,37 @@ export class EventService {
   }
 
   getEvents = async (query: GetEventsDTO) => {
-    const { take, page, sortBy, sortOrder, search } = query;
+    const { take, page, sortBy, sortOrder, search, startDate, endDate, category, location } = query;
 
     const whereClause: Prisma.EventWhereInput = {};
 
-    if(search){
+    if (search) {
       whereClause.title = { contains: search, mode: 'insensitive' };
+    }
+    if (location) { whereClause.location = location }
+    if (category) { whereClause.category = category }
+
+    const parsedStartDate = startDate ? new Date(startDate) : undefined;
+    const parsedEndDate = endDate ? new Date(endDate) : undefined;
+
+    const isValidDate = (date: any) =>
+      date instanceof Date && !isNaN(date.getTime());
+
+    if (isValidDate(parsedStartDate) && isValidDate(parsedEndDate)) {
+      whereClause.AND = [
+        { startDate: { gte: parsedStartDate } },
+        { endDate: { lte: parsedEndDate } },
+      ];
+    } else if (isValidDate(parsedStartDate)) {
+      whereClause.OR = [
+        { startDate: { gte: parsedStartDate } },
+        { endDate: { gte: parsedStartDate } },
+      ];
+    } else if (isValidDate(parsedEndDate)) {
+      whereClause.OR = [
+        { startDate: { lte: parsedEndDate } },
+        { endDate: { lte: parsedEndDate } },
+      ];
     }
 
     const events = await this.prisma.event.findMany({

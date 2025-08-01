@@ -243,6 +243,19 @@ exports.EventCategory = exports.$Enums.EventCategory = {
   FASHION: 'FASHION'
 };
 
+exports.EventLocation = exports.$Enums.EventLocation = {
+  ONLINE: 'ONLINE',
+  JAKARTA: 'JAKARTA',
+  TANGERANG: 'TANGERANG',
+  BANDUNG: 'BANDUNG',
+  YOGYAKARTA: 'YOGYAKARTA',
+  SURABAYA: 'SURABAYA',
+  SEMARANG: 'SEMARANG',
+  MALANG: 'MALANG',
+  KEDIRI: 'KEDIRI',
+  MOJOKERTO: 'MOJOKERTO'
+};
+
 exports.TransactionStatus = exports.$Enums.TransactionStatus = {
   WAITING_PAYMENT: 'WAITING_PAYMENT',
   WAITING_FOR_CONFIRMATION: 'WAITING_FOR_CONFIRMATION',
