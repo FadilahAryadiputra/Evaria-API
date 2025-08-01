@@ -1,10 +1,10 @@
-import { Request, Response } from "express";
-import { EventService } from "./event.service";
-import { plainToInstance } from "class-transformer";
-import { PaginationQueryParams } from "../pagination/dto/pagination.dto";
+import { Request, Response } from 'express';
+import { EventService } from './event.service';
+import { plainToInstance } from 'class-transformer';
+import { PaginationQueryParams } from '../pagination/dto/pagination.dto';
 
 export class EventController {
-  private eventService: EventService
+  private eventService: EventService;
 
   constructor() {
     this.eventService = new EventService();
@@ -14,5 +14,11 @@ export class EventController {
     const query = plainToInstance(PaginationQueryParams, req.query);
     const result = await this.eventService.getEvents(query);
     res.status(200).send(result);
-  }
+  };
+
+  getEventBySlug = async (req: Request, res: Response) => {
+    const slug = req.params.slug;
+    const result = await this.eventService.getEventBySlug(slug);
+    res.status(200).send(result);
+  };
 }
