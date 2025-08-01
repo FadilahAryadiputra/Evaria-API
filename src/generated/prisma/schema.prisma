@@ -32,6 +32,19 @@ enum EventCategory {
   FASHION
 }
 
+enum EventLocation {
+  ONLINE
+  JAKARTA
+  TANGERANG
+  BANDUNG
+  YOGYAKARTA
+  SURABAYA
+  SEMARANG
+  MALANG
+  KEDIRI
+  MOJOKERTO
+}
+
 enum TransactionStatus {
   WAITING_PAYMENT
   WAITING_FOR_CONFIRMATION
@@ -81,7 +94,7 @@ model Event {
   slug        String        @unique
   title       String        @unique
   category    EventCategory
-  location    String
+  location    EventLocation
   content     String        @db.Text
   description String        @db.Text
   thumbnail   String

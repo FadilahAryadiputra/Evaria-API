@@ -76,6 +76,22 @@ export const EventCategory: {
 export type EventCategory = (typeof EventCategory)[keyof typeof EventCategory]
 
 
+export const EventLocation: {
+  ONLINE: 'ONLINE',
+  JAKARTA: 'JAKARTA',
+  TANGERANG: 'TANGERANG',
+  BANDUNG: 'BANDUNG',
+  YOGYAKARTA: 'YOGYAKARTA',
+  SURABAYA: 'SURABAYA',
+  SEMARANG: 'SEMARANG',
+  MALANG: 'MALANG',
+  KEDIRI: 'KEDIRI',
+  MOJOKERTO: 'MOJOKERTO'
+};
+
+export type EventLocation = (typeof EventLocation)[keyof typeof EventLocation]
+
+
 export const TransactionStatus: {
   WAITING_PAYMENT: 'WAITING_PAYMENT',
   WAITING_FOR_CONFIRMATION: 'WAITING_FOR_CONFIRMATION',
@@ -96,6 +112,10 @@ export const UserRole: typeof $Enums.UserRole
 export type EventCategory = $Enums.EventCategory
 
 export const EventCategory: typeof $Enums.EventCategory
+
+export type EventLocation = $Enums.EventLocation
+
+export const EventLocation: typeof $Enums.EventLocation
 
 export type TransactionStatus = $Enums.TransactionStatus
 
@@ -4013,7 +4033,7 @@ export namespace Prisma {
     slug: string | null
     title: string | null
     category: $Enums.EventCategory | null
-    location: string | null
+    location: $Enums.EventLocation | null
     content: string | null
     description: string | null
     thumbnail: string | null
@@ -4032,7 +4052,7 @@ export namespace Prisma {
     slug: string | null
     title: string | null
     category: $Enums.EventCategory | null
-    location: string | null
+    location: $Enums.EventLocation | null
     content: string | null
     description: string | null
     thumbnail: string | null
@@ -4202,7 +4222,7 @@ export namespace Prisma {
     slug: string
     title: string
     category: $Enums.EventCategory
-    location: string
+    location: $Enums.EventLocation
     content: string
     description: string
     thumbnail: string
@@ -4344,7 +4364,7 @@ export namespace Prisma {
       slug: string
       title: string
       category: $Enums.EventCategory
-      location: string
+      location: $Enums.EventLocation
       content: string
       description: string
       thumbnail: string
@@ -4787,7 +4807,7 @@ export namespace Prisma {
     readonly slug: FieldRef<"Event", 'String'>
     readonly title: FieldRef<"Event", 'String'>
     readonly category: FieldRef<"Event", 'EventCategory'>
-    readonly location: FieldRef<"Event", 'String'>
+    readonly location: FieldRef<"Event", 'EventLocation'>
     readonly content: FieldRef<"Event", 'String'>
     readonly description: FieldRef<"Event", 'String'>
     readonly thumbnail: FieldRef<"Event", 'String'>
@@ -10207,6 +10227,20 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'EventLocation'
+   */
+  export type EnumEventLocationFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'EventLocation'>
+    
+
+
+  /**
+   * Reference to a field of type 'EventLocation[]'
+   */
+  export type ListEnumEventLocationFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'EventLocation[]'>
+    
+
+
+  /**
    * Reference to a field of type 'TransactionStatus'
    */
   export type EnumTransactionStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'TransactionStatus'>
@@ -10405,7 +10439,7 @@ export namespace Prisma {
     slug?: StringFilter<"Event"> | string
     title?: StringFilter<"Event"> | string
     category?: EnumEventCategoryFilter<"Event"> | $Enums.EventCategory
-    location?: StringFilter<"Event"> | string
+    location?: EnumEventLocationFilter<"Event"> | $Enums.EventLocation
     content?: StringFilter<"Event"> | string
     description?: StringFilter<"Event"> | string
     thumbnail?: StringFilter<"Event"> | string
@@ -10454,7 +10488,7 @@ export namespace Prisma {
     OR?: EventWhereInput[]
     NOT?: EventWhereInput | EventWhereInput[]
     category?: EnumEventCategoryFilter<"Event"> | $Enums.EventCategory
-    location?: StringFilter<"Event"> | string
+    location?: EnumEventLocationFilter<"Event"> | $Enums.EventLocation
     content?: StringFilter<"Event"> | string
     description?: StringFilter<"Event"> | string
     thumbnail?: StringFilter<"Event"> | string
@@ -10502,7 +10536,7 @@ export namespace Prisma {
     slug?: StringWithAggregatesFilter<"Event"> | string
     title?: StringWithAggregatesFilter<"Event"> | string
     category?: EnumEventCategoryWithAggregatesFilter<"Event"> | $Enums.EventCategory
-    location?: StringWithAggregatesFilter<"Event"> | string
+    location?: EnumEventLocationWithAggregatesFilter<"Event"> | $Enums.EventLocation
     content?: StringWithAggregatesFilter<"Event"> | string
     description?: StringWithAggregatesFilter<"Event"> | string
     thumbnail?: StringWithAggregatesFilter<"Event"> | string
@@ -11035,7 +11069,7 @@ export namespace Prisma {
     slug: string
     title: string
     category: $Enums.EventCategory
-    location: string
+    location: $Enums.EventLocation
     content: string
     description: string
     thumbnail: string
@@ -11057,7 +11091,7 @@ export namespace Prisma {
     slug: string
     title: string
     category: $Enums.EventCategory
-    location: string
+    location: $Enums.EventLocation
     content: string
     description: string
     thumbnail: string
@@ -11079,7 +11113,7 @@ export namespace Prisma {
     slug?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     category?: EnumEventCategoryFieldUpdateOperationsInput | $Enums.EventCategory
-    location?: StringFieldUpdateOperationsInput | string
+    location?: EnumEventLocationFieldUpdateOperationsInput | $Enums.EventLocation
     content?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     thumbnail?: StringFieldUpdateOperationsInput | string
@@ -11101,7 +11135,7 @@ export namespace Prisma {
     slug?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     category?: EnumEventCategoryFieldUpdateOperationsInput | $Enums.EventCategory
-    location?: StringFieldUpdateOperationsInput | string
+    location?: EnumEventLocationFieldUpdateOperationsInput | $Enums.EventLocation
     content?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     thumbnail?: StringFieldUpdateOperationsInput | string
@@ -11123,7 +11157,7 @@ export namespace Prisma {
     slug: string
     title: string
     category: $Enums.EventCategory
-    location: string
+    location: $Enums.EventLocation
     content: string
     description: string
     thumbnail: string
@@ -11142,7 +11176,7 @@ export namespace Prisma {
     slug?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     category?: EnumEventCategoryFieldUpdateOperationsInput | $Enums.EventCategory
-    location?: StringFieldUpdateOperationsInput | string
+    location?: EnumEventLocationFieldUpdateOperationsInput | $Enums.EventLocation
     content?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     thumbnail?: StringFieldUpdateOperationsInput | string
@@ -11160,7 +11194,7 @@ export namespace Prisma {
     slug?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     category?: EnumEventCategoryFieldUpdateOperationsInput | $Enums.EventCategory
-    location?: StringFieldUpdateOperationsInput | string
+    location?: EnumEventLocationFieldUpdateOperationsInput | $Enums.EventLocation
     content?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     thumbnail?: StringFieldUpdateOperationsInput | string
@@ -11756,6 +11790,13 @@ export namespace Prisma {
     not?: NestedEnumEventCategoryFilter<$PrismaModel> | $Enums.EventCategory
   }
 
+  export type EnumEventLocationFilter<$PrismaModel = never> = {
+    equals?: $Enums.EventLocation | EnumEventLocationFieldRefInput<$PrismaModel>
+    in?: $Enums.EventLocation[] | ListEnumEventLocationFieldRefInput<$PrismaModel>
+    notIn?: $Enums.EventLocation[] | ListEnumEventLocationFieldRefInput<$PrismaModel>
+    not?: NestedEnumEventLocationFilter<$PrismaModel> | $Enums.EventLocation
+  }
+
   export type OrganizerScalarRelationFilter = {
     is?: OrganizerWhereInput
     isNot?: OrganizerWhereInput
@@ -11846,6 +11887,16 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumEventCategoryFilter<$PrismaModel>
     _max?: NestedEnumEventCategoryFilter<$PrismaModel>
+  }
+
+  export type EnumEventLocationWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.EventLocation | EnumEventLocationFieldRefInput<$PrismaModel>
+    in?: $Enums.EventLocation[] | ListEnumEventLocationFieldRefInput<$PrismaModel>
+    notIn?: $Enums.EventLocation[] | ListEnumEventLocationFieldRefInput<$PrismaModel>
+    not?: NestedEnumEventLocationWithAggregatesFilter<$PrismaModel> | $Enums.EventLocation
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumEventLocationFilter<$PrismaModel>
+    _max?: NestedEnumEventLocationFilter<$PrismaModel>
   }
 
   export type EventScalarRelationFilter = {
@@ -12334,6 +12385,10 @@ export namespace Prisma {
 
   export type EnumEventCategoryFieldUpdateOperationsInput = {
     set?: $Enums.EventCategory
+  }
+
+  export type EnumEventLocationFieldUpdateOperationsInput = {
+    set?: $Enums.EventLocation
   }
 
   export type OrganizerUpdateOneRequiredWithoutEventsNestedInput = {
@@ -12838,6 +12893,13 @@ export namespace Prisma {
     not?: NestedEnumEventCategoryFilter<$PrismaModel> | $Enums.EventCategory
   }
 
+  export type NestedEnumEventLocationFilter<$PrismaModel = never> = {
+    equals?: $Enums.EventLocation | EnumEventLocationFieldRefInput<$PrismaModel>
+    in?: $Enums.EventLocation[] | ListEnumEventLocationFieldRefInput<$PrismaModel>
+    notIn?: $Enums.EventLocation[] | ListEnumEventLocationFieldRefInput<$PrismaModel>
+    not?: NestedEnumEventLocationFilter<$PrismaModel> | $Enums.EventLocation
+  }
+
   export type NestedEnumEventCategoryWithAggregatesFilter<$PrismaModel = never> = {
     equals?: $Enums.EventCategory | EnumEventCategoryFieldRefInput<$PrismaModel>
     in?: $Enums.EventCategory[] | ListEnumEventCategoryFieldRefInput<$PrismaModel>
@@ -12846,6 +12908,16 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumEventCategoryFilter<$PrismaModel>
     _max?: NestedEnumEventCategoryFilter<$PrismaModel>
+  }
+
+  export type NestedEnumEventLocationWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.EventLocation | EnumEventLocationFieldRefInput<$PrismaModel>
+    in?: $Enums.EventLocation[] | ListEnumEventLocationFieldRefInput<$PrismaModel>
+    notIn?: $Enums.EventLocation[] | ListEnumEventLocationFieldRefInput<$PrismaModel>
+    not?: NestedEnumEventLocationWithAggregatesFilter<$PrismaModel> | $Enums.EventLocation
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumEventLocationFilter<$PrismaModel>
+    _max?: NestedEnumEventLocationFilter<$PrismaModel>
   }
 
   export type NestedStringNullableFilter<$PrismaModel = never> = {
@@ -13002,7 +13074,7 @@ export namespace Prisma {
     slug: string
     title: string
     category: $Enums.EventCategory
-    location: string
+    location: $Enums.EventLocation
     content: string
     description: string
     thumbnail: string
@@ -13023,7 +13095,7 @@ export namespace Prisma {
     slug: string
     title: string
     category: $Enums.EventCategory
-    location: string
+    location: $Enums.EventLocation
     content: string
     description: string
     thumbnail: string
@@ -13113,7 +13185,7 @@ export namespace Prisma {
     slug?: StringFilter<"Event"> | string
     title?: StringFilter<"Event"> | string
     category?: EnumEventCategoryFilter<"Event"> | $Enums.EventCategory
-    location?: StringFilter<"Event"> | string
+    location?: EnumEventLocationFilter<"Event"> | $Enums.EventLocation
     content?: StringFilter<"Event"> | string
     description?: StringFilter<"Event"> | string
     thumbnail?: StringFilter<"Event"> | string
@@ -13399,7 +13471,7 @@ export namespace Prisma {
     slug: string
     title: string
     category: $Enums.EventCategory
-    location: string
+    location: $Enums.EventLocation
     content: string
     description: string
     thumbnail: string
@@ -13420,7 +13492,7 @@ export namespace Prisma {
     slug: string
     title: string
     category: $Enums.EventCategory
-    location: string
+    location: $Enums.EventLocation
     content: string
     description: string
     thumbnail: string
@@ -13485,7 +13557,7 @@ export namespace Prisma {
     slug?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     category?: EnumEventCategoryFieldUpdateOperationsInput | $Enums.EventCategory
-    location?: StringFieldUpdateOperationsInput | string
+    location?: EnumEventLocationFieldUpdateOperationsInput | $Enums.EventLocation
     content?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     thumbnail?: StringFieldUpdateOperationsInput | string
@@ -13506,7 +13578,7 @@ export namespace Prisma {
     slug?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     category?: EnumEventCategoryFieldUpdateOperationsInput | $Enums.EventCategory
-    location?: StringFieldUpdateOperationsInput | string
+    location?: EnumEventLocationFieldUpdateOperationsInput | $Enums.EventLocation
     content?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     thumbnail?: StringFieldUpdateOperationsInput | string
@@ -13556,7 +13628,7 @@ export namespace Prisma {
     slug: string
     title: string
     category: $Enums.EventCategory
-    location: string
+    location: $Enums.EventLocation
     content: string
     description: string
     thumbnail: string
@@ -13577,7 +13649,7 @@ export namespace Prisma {
     slug: string
     title: string
     category: $Enums.EventCategory
-    location: string
+    location: $Enums.EventLocation
     content: string
     description: string
     thumbnail: string
@@ -13654,7 +13726,7 @@ export namespace Prisma {
     slug?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     category?: EnumEventCategoryFieldUpdateOperationsInput | $Enums.EventCategory
-    location?: StringFieldUpdateOperationsInput | string
+    location?: EnumEventLocationFieldUpdateOperationsInput | $Enums.EventLocation
     content?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     thumbnail?: StringFieldUpdateOperationsInput | string
@@ -13675,7 +13747,7 @@ export namespace Prisma {
     slug?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     category?: EnumEventCategoryFieldUpdateOperationsInput | $Enums.EventCategory
-    location?: StringFieldUpdateOperationsInput | string
+    location?: EnumEventLocationFieldUpdateOperationsInput | $Enums.EventLocation
     content?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     thumbnail?: StringFieldUpdateOperationsInput | string
@@ -13743,7 +13815,7 @@ export namespace Prisma {
     slug: string
     title: string
     category: $Enums.EventCategory
-    location: string
+    location: $Enums.EventLocation
     content: string
     description: string
     thumbnail: string
@@ -13764,7 +13836,7 @@ export namespace Prisma {
     slug: string
     title: string
     category: $Enums.EventCategory
-    location: string
+    location: $Enums.EventLocation
     content: string
     description: string
     thumbnail: string
@@ -13924,7 +13996,7 @@ export namespace Prisma {
     slug?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     category?: EnumEventCategoryFieldUpdateOperationsInput | $Enums.EventCategory
-    location?: StringFieldUpdateOperationsInput | string
+    location?: EnumEventLocationFieldUpdateOperationsInput | $Enums.EventLocation
     content?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     thumbnail?: StringFieldUpdateOperationsInput | string
@@ -13945,7 +14017,7 @@ export namespace Prisma {
     slug?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     category?: EnumEventCategoryFieldUpdateOperationsInput | $Enums.EventCategory
-    location?: StringFieldUpdateOperationsInput | string
+    location?: EnumEventLocationFieldUpdateOperationsInput | $Enums.EventLocation
     content?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     thumbnail?: StringFieldUpdateOperationsInput | string
@@ -14250,7 +14322,7 @@ export namespace Prisma {
     slug: string
     title: string
     category: $Enums.EventCategory
-    location: string
+    location: $Enums.EventLocation
     content: string
     description: string
     thumbnail: string
@@ -14282,7 +14354,7 @@ export namespace Prisma {
     slug?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     category?: EnumEventCategoryFieldUpdateOperationsInput | $Enums.EventCategory
-    location?: StringFieldUpdateOperationsInput | string
+    location?: EnumEventLocationFieldUpdateOperationsInput | $Enums.EventLocation
     content?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     thumbnail?: StringFieldUpdateOperationsInput | string
@@ -14303,7 +14375,7 @@ export namespace Prisma {
     slug?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     category?: EnumEventCategoryFieldUpdateOperationsInput | $Enums.EventCategory
-    location?: StringFieldUpdateOperationsInput | string
+    location?: EnumEventLocationFieldUpdateOperationsInput | $Enums.EventLocation
     content?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     thumbnail?: StringFieldUpdateOperationsInput | string
@@ -14324,7 +14396,7 @@ export namespace Prisma {
     slug?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     category?: EnumEventCategoryFieldUpdateOperationsInput | $Enums.EventCategory
-    location?: StringFieldUpdateOperationsInput | string
+    location?: EnumEventLocationFieldUpdateOperationsInput | $Enums.EventLocation
     content?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     thumbnail?: StringFieldUpdateOperationsInput | string
