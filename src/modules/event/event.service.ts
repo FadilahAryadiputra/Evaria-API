@@ -1,13 +1,18 @@
 import { Prisma } from '../../generated/prisma';
 import { ApiError } from '../../utils/api-error';
+import { generateSlug } from '../../utils/generate-slug';
+import { CloudinaryService } from '../cloudinary/cloudinary.service';
 import { PrismaService } from '../prisma/prisma.service';
+import { CreateEventDTO } from './dto/create-event.dto';
 import { GetEventsDTO } from './dto/get-events.dto';
 
 export class EventService {
   private prisma: PrismaService;
+  private cloudinaryService: CloudinaryService;
 
   constructor() {
     this.prisma = new PrismaService();
+    this.cloudinaryService = new CloudinaryService();
   }
 
   getEvents = async (query: GetEventsDTO) => {
@@ -87,5 +92,34 @@ export class EventService {
     }
 
     return event;
+  };
+
+  createEvent = async (
+    body: CreateEventDTO,
+    thumbnail: Express.Multer.File,
+    authUserId: string
+  ) => {
+    const event = await this.prisma.event.findFirst({
+      where: { title: body.title },
+    });
+
+    if (event) {
+      throw new ApiError('Event already exists', 400);
+    }
+
+    const slug = generateSlug(body.title);
+
+    const { secure_url } = await this.cloudinaryService.upload(thumbnail);
+
+    await this.prisma.event.create({
+      data: {
+        ...body,
+        thumbnail: secure_url,
+        organizerId: authUserId,
+        slug: slug,
+      },
+    });
+
+    return { message: 'Create event success' };
   };
 }
