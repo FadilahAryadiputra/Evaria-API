@@ -40,7 +40,7 @@ export class AuthService {
   };
 
   login = async (body: LoginDTO) => {
-    const user = await this.prisma.user.findFirst({
+    const user = await this.prisma.organizer.findFirst({
       where: { email: body.email },
     });
 
