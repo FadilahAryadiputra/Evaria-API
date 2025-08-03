@@ -16,9 +16,14 @@ export class AuthRouter {
 
   private initializedRoutes = () => {
     this.router.post(
-      '/register',
+      '/register/user',
       validateBody(RegisterDTO),
-      this.authController.register
+      this.authController.registerUser
+    );
+    this.router.post(
+      '/register/organizer',
+      validateBody(RegisterDTO),
+      this.authController.registerOrganizer
     );
     this.router.post(
       '/login',

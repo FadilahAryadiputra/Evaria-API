@@ -12,4 +12,7 @@ export class RegisterDTO {
   @IsNotEmpty()
   @IsString()
   password!: string;
+  
+  @IsString()
+  refCode?: string;
 }

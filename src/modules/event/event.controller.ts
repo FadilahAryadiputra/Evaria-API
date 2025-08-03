@@ -24,14 +24,14 @@ export class EventController {
   };
 
   createEvent = async (req: Request, res: Response) => {
-    const authUserId = res.locals.user.id;
+    const authUser = res.locals.user;
     const files = req.files as { [fieldname: string]: Express.Multer.File[] };
     const thumbnail = files.thumbnail?.[0];
     if (!thumbnail) throw new ApiError('Thumbnail is required', 400);
     const result = await this.eventService.createEvent(
       req.body,
       thumbnail,
-      authUserId
+      authUser
     );
     res.status(200).send(result);
   };

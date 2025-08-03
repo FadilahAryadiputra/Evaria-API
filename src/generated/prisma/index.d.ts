@@ -1726,6 +1726,7 @@ export namespace Prisma {
     password: string | null
     role: $Enums.UserRole | null
     point: number | null
+    refCode: string | null
     profilePicture: string | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -1739,6 +1740,7 @@ export namespace Prisma {
     password: string | null
     role: $Enums.UserRole | null
     point: number | null
+    refCode: string | null
     profilePicture: string | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -1752,6 +1754,7 @@ export namespace Prisma {
     password: number
     role: number
     point: number
+    refCode: number
     profilePicture: number
     createdAt: number
     updatedAt: number
@@ -1775,6 +1778,7 @@ export namespace Prisma {
     password?: true
     role?: true
     point?: true
+    refCode?: true
     profilePicture?: true
     createdAt?: true
     updatedAt?: true
@@ -1788,6 +1792,7 @@ export namespace Prisma {
     password?: true
     role?: true
     point?: true
+    refCode?: true
     profilePicture?: true
     createdAt?: true
     updatedAt?: true
@@ -1801,6 +1806,7 @@ export namespace Prisma {
     password?: true
     role?: true
     point?: true
+    refCode?: true
     profilePicture?: true
     createdAt?: true
     updatedAt?: true
@@ -1901,6 +1907,7 @@ export namespace Prisma {
     password: string
     role: $Enums.UserRole
     point: number
+    refCode: string
     profilePicture: string
     createdAt: Date
     updatedAt: Date
@@ -1933,6 +1940,7 @@ export namespace Prisma {
     password?: boolean
     role?: boolean
     point?: boolean
+    refCode?: boolean
     profilePicture?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -1948,6 +1956,7 @@ export namespace Prisma {
     password?: boolean
     role?: boolean
     point?: boolean
+    refCode?: boolean
     profilePicture?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -1961,6 +1970,7 @@ export namespace Prisma {
     password?: boolean
     role?: boolean
     point?: boolean
+    refCode?: boolean
     profilePicture?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -1974,13 +1984,14 @@ export namespace Prisma {
     password?: boolean
     role?: boolean
     point?: boolean
+    refCode?: boolean
     profilePicture?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     deletedAt?: boolean
   }
 
-  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "username" | "email" | "password" | "role" | "point" | "profilePicture" | "createdAt" | "updatedAt" | "deletedAt", ExtArgs["result"]["user"]>
+  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "username" | "email" | "password" | "role" | "point" | "refCode" | "profilePicture" | "createdAt" | "updatedAt" | "deletedAt", ExtArgs["result"]["user"]>
   export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     transactions?: boolean | User$transactionsArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
@@ -2000,6 +2011,7 @@ export namespace Prisma {
       password: string
       role: $Enums.UserRole
       point: number
+      refCode: string
       profilePicture: string
       createdAt: Date
       updatedAt: Date
@@ -2434,6 +2446,7 @@ export namespace Prisma {
     readonly password: FieldRef<"User", 'String'>
     readonly role: FieldRef<"User", 'UserRole'>
     readonly point: FieldRef<"User", 'Int'>
+    readonly refCode: FieldRef<"User", 'String'>
     readonly profilePicture: FieldRef<"User", 'String'>
     readonly createdAt: FieldRef<"User", 'DateTime'>
     readonly updatedAt: FieldRef<"User", 'DateTime'>
@@ -10021,6 +10034,7 @@ export namespace Prisma {
     password: 'password',
     role: 'role',
     point: 'point',
+    refCode: 'refCode',
     profilePicture: 'profilePicture',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt',
@@ -10281,6 +10295,7 @@ export namespace Prisma {
     password?: StringFilter<"User"> | string
     role?: EnumUserRoleFilter<"User"> | $Enums.UserRole
     point?: IntFilter<"User"> | number
+    refCode?: StringFilter<"User"> | string
     profilePicture?: StringFilter<"User"> | string
     createdAt?: DateTimeFilter<"User"> | Date | string
     updatedAt?: DateTimeFilter<"User"> | Date | string
@@ -10295,6 +10310,7 @@ export namespace Prisma {
     password?: SortOrder
     role?: SortOrder
     point?: SortOrder
+    refCode?: SortOrder
     profilePicture?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -10305,6 +10321,7 @@ export namespace Prisma {
   export type UserWhereUniqueInput = Prisma.AtLeast<{
     id?: string
     email?: string
+    refCode?: string
     AND?: UserWhereInput | UserWhereInput[]
     OR?: UserWhereInput[]
     NOT?: UserWhereInput | UserWhereInput[]
@@ -10317,7 +10334,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"User"> | Date | string
     deletedAt?: DateTimeNullableFilter<"User"> | Date | string | null
     transactions?: TransactionListRelationFilter
-  }, "id" | "email">
+  }, "id" | "email" | "refCode">
 
   export type UserOrderByWithAggregationInput = {
     id?: SortOrder
@@ -10326,6 +10343,7 @@ export namespace Prisma {
     password?: SortOrder
     role?: SortOrder
     point?: SortOrder
+    refCode?: SortOrder
     profilePicture?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -10347,6 +10365,7 @@ export namespace Prisma {
     password?: StringWithAggregatesFilter<"User"> | string
     role?: EnumUserRoleWithAggregatesFilter<"User"> | $Enums.UserRole
     point?: IntWithAggregatesFilter<"User"> | number
+    refCode?: StringWithAggregatesFilter<"User"> | string
     profilePicture?: StringWithAggregatesFilter<"User"> | string
     createdAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
@@ -10386,11 +10405,11 @@ export namespace Prisma {
 
   export type OrganizerWhereUniqueInput = Prisma.AtLeast<{
     id?: string
+    username?: string
     email?: string
     AND?: OrganizerWhereInput | OrganizerWhereInput[]
     OR?: OrganizerWhereInput[]
     NOT?: OrganizerWhereInput | OrganizerWhereInput[]
-    username?: StringFilter<"Organizer"> | string
     password?: StringFilter<"Organizer"> | string
     role?: EnumUserRoleFilter<"Organizer"> | $Enums.UserRole
     profilePicture?: StringFilter<"Organizer"> | string
@@ -10399,7 +10418,7 @@ export namespace Prisma {
     deletedAt?: DateTimeNullableFilter<"Organizer"> | Date | string | null
     events?: EventListRelationFilter
     transactions?: TransactionListRelationFilter
-  }, "id" | "email">
+  }, "id" | "username" | "email">
 
   export type OrganizerOrderByWithAggregationInput = {
     id?: SortOrder
@@ -10884,6 +10903,7 @@ export namespace Prisma {
     password: string
     role?: $Enums.UserRole
     point?: number
+    refCode: string
     profilePicture?: string
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -10898,6 +10918,7 @@ export namespace Prisma {
     password: string
     role?: $Enums.UserRole
     point?: number
+    refCode: string
     profilePicture?: string
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -10912,6 +10933,7 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
     point?: IntFieldUpdateOperationsInput | number
+    refCode?: StringFieldUpdateOperationsInput | string
     profilePicture?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -10926,6 +10948,7 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
     point?: IntFieldUpdateOperationsInput | number
+    refCode?: StringFieldUpdateOperationsInput | string
     profilePicture?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -10940,6 +10963,7 @@ export namespace Prisma {
     password: string
     role?: $Enums.UserRole
     point?: number
+    refCode: string
     profilePicture?: string
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -10953,6 +10977,7 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
     point?: IntFieldUpdateOperationsInput | number
+    refCode?: StringFieldUpdateOperationsInput | string
     profilePicture?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -10966,6 +10991,7 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
     point?: IntFieldUpdateOperationsInput | number
+    refCode?: StringFieldUpdateOperationsInput | string
     profilePicture?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -11625,6 +11651,7 @@ export namespace Prisma {
     password?: SortOrder
     role?: SortOrder
     point?: SortOrder
+    refCode?: SortOrder
     profilePicture?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -11642,6 +11669,7 @@ export namespace Prisma {
     password?: SortOrder
     role?: SortOrder
     point?: SortOrder
+    refCode?: SortOrder
     profilePicture?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -11655,6 +11683,7 @@ export namespace Prisma {
     password?: SortOrder
     role?: SortOrder
     point?: SortOrder
+    refCode?: SortOrder
     profilePicture?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -13786,6 +13815,7 @@ export namespace Prisma {
     password: string
     role?: $Enums.UserRole
     point?: number
+    refCode: string
     profilePicture?: string
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -13799,6 +13829,7 @@ export namespace Prisma {
     password: string
     role?: $Enums.UserRole
     point?: number
+    refCode: string
     profilePicture?: string
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -13961,6 +13992,7 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
     point?: IntFieldUpdateOperationsInput | number
+    refCode?: StringFieldUpdateOperationsInput | string
     profilePicture?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -13974,6 +14006,7 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
     point?: IntFieldUpdateOperationsInput | number
+    refCode?: StringFieldUpdateOperationsInput | string
     profilePicture?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string

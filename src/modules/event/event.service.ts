@@ -97,12 +97,15 @@ export class EventService {
   createEvent = async (
     body: CreateEventDTO,
     thumbnail: Express.Multer.File,
-    authUserId: string
+    authUser: { id: string; role: string }
   ) => {
+    if(authUser.role !== 'ORGANIZER') {
+      throw new ApiError('Only organizers can create an event', 403);
+    }
+
     const event = await this.prisma.event.findFirst({
       where: { title: body.title },
     });
-
     if (event) {
       throw new ApiError('Event already exists', 400);
     }
@@ -115,7 +118,7 @@ export class EventService {
       data: {
         ...body,
         thumbnail: secure_url,
-        organizerId: authUserId,
+        organizerId: authUser.id,
         slug: slug,
       },
     });
