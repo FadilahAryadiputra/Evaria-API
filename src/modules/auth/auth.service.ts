@@ -16,7 +16,25 @@ export class AuthService {
     this.jwtService = new JwtService();
   }
 
-  register = async (body: RegisterDTO) => {
+  private generateUniqueRefCode = async (): Promise<string> => {
+    let newCode = '';
+
+    while (true) {
+      newCode = Math.floor(100000 + Math.random() * 900000).toString();
+
+      const existingUser = await this.prisma.user.findUnique({
+        where: { refCode: newCode },
+      });
+
+      if (!existingUser) {
+        break;
+      }
+    }
+
+    return newCode;
+  };
+
+  registerUser = async (body: RegisterDTO) => {
     const user = await this.prisma.user.findFirst({
       where: { email: body.email },
     });
@@ -24,12 +42,61 @@ export class AuthService {
     if (user) {
       throw new ApiError('Email already exists', 400);
     }
+    
+    if (body.refCode) {
+      const referrer = await this.prisma.user.findFirst({
+        where: {refCode: body.refCode}
+      })
+      if (!referrer) {
+        throw new ApiError('Invalid referral code', 400);
+      }
+      await this.prisma.user.update({
+        where: {id: referrer.id},
+        data: {
+          point: { increment: 10000 }
+        }
+      })
+    }
+
+    const hashedPassword = await this.passwordService.hashPassword(
+      body.password
+    );
+    
+    const newRefCode = await this.generateUniqueRefCode();
+    
+    return await this.prisma.user.create({
+      data: {
+        username: body.username,
+        email: body.email,
+        password: hashedPassword,
+        refCode: newRefCode,
+      },
+      omit: { password: true },
+    });
+  };
+
+  registerOrganizer = async (body: RegisterDTO) => {
+    const organizer = await this.prisma.organizer.findFirst({
+      where: {
+        OR: [{ username: body.username }, { email: body.email }],
+      },
+    });
+
+    if (organizer) {
+      if (organizer.username === body.username) {
+        throw new ApiError('Username already exists', 400);
+      }
+      if (organizer.email === body.email) {
+        throw new ApiError('Email already exists', 400);
+      }
+      throw new ApiError('Organizer already exists', 400);
+    }
 
     const hashedPassword = await this.passwordService.hashPassword(
       body.password
     );
 
-    return await this.prisma.user.create({
+    return await this.prisma.organizer.create({
       data: {
         username: body.username,
         email: body.email,
@@ -40,23 +107,26 @@ export class AuthService {
   };
 
   login = async (body: LoginDTO) => {
-    const user = await this.prisma.organizer.findFirst({
-      where: { email: body.email },
-    });
+    const [organizer, user] = await Promise.all([
+      this.prisma.organizer.findFirst({ where: { email: body.email } }),
+      this.prisma.user.findFirst({ where: { email: body.email } }),
+    ]);
 
-    if (!user) {
+    const account = organizer || user;
+
+    if (!account) {
       throw new ApiError('User not found', 400);
     }
     const isPasswordValid = await this.passwordService.comparePassword(
       body.password,
-      user.password
+      account.password
     );
 
     if (!isPasswordValid) {
       throw new ApiError('Invalid password', 400);
     }
 
-    const payload = { id: user.id };
+    const payload = { id: account.id, role: account.role };
 
     const accessToken = this.jwtService.generateToken(
       payload,
@@ -64,7 +134,7 @@ export class AuthService {
       { expiresIn: '2h' }
     );
 
-    const { password, ...userWithouthPassword } = user;
+    const { password, ...userWithouthPassword } = account;
 
     return { ...userWithouthPassword, accessToken };
   };

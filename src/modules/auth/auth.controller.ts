@@ -8,8 +8,13 @@ export class AuthController {
     this.authService = new AuthService();
   }
 
-  register = async (req: Request, res: Response) => {
-    const result = await this.authService.register(req.body);
+  registerUser = async (req: Request, res: Response) => {
+    const result = await this.authService.registerUser(req.body);
+    res.status(200).send(result);
+  };
+  
+  registerOrganizer = async (req: Request, res: Response) => {
+    const result = await this.authService.registerOrganizer(req.body);
     res.status(200).send(result);
   };
 
