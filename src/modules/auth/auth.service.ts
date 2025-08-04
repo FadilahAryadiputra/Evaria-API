@@ -1,3 +1,4 @@
+import { Organizer, User } from '../../generated/prisma';
 import { ApiError } from '../../utils/api-error';
 import { JwtService } from '../jwt/jwt.service';
 import { PasswordService } from '../password/password.service';
@@ -137,5 +138,20 @@ export class AuthService {
     const { password, ...userWithouthPassword } = account;
 
     return { ...userWithouthPassword, accessToken };
+  };
+
+  authSessionLogin = async ({ id }: Pick<User | Organizer, 'id'>) => {
+    const [user, organizer] = await Promise.all([
+      this.prisma.user.findUnique({ where: { id } }),
+      this.prisma.organizer.findUnique({ where: { id } }),
+    ]);
+
+    const account = user || organizer;
+
+    if (!account) {
+      throw new ApiError('Authentication session login failed', 400);
+    }
+
+    return { name: account.username, role: account.role };
   };
 }
