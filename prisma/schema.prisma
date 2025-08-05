@@ -136,10 +136,11 @@ model EventTicket {
 }
 
 model Voucher {
-  code        String   @id @unique
-  discount    Int
-  quota       Int
-  expiredDate DateTime
+  code      String   @id @unique
+  discount  Int
+  quota     Int
+  startDate DateTime
+  endDate   DateTime
 
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
