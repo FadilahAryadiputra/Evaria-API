@@ -35,4 +35,33 @@ export class EventController {
     );
     res.status(200).send(result);
   };
+
+  createEventTicket = async (req: Request, res: Response) => {
+    const authUser = res.locals.user;
+    const result = await this.eventService.createEventTicket(req.body, authUser);
+    res.status(200).send(result);
+  };
+
+  authSessionLogin = async (req: Request, res: Response) => {
+    const user = res.locals.user;
+    console.log(user)
+    const sessionData = await this.eventService.authSessionLogin({ id: user.id });
+    res.status(200).json({
+      success: true,
+      message: 'Authentication session login successful',
+      data: sessionData,
+    });
+  };
+
+  getOrganizerEvents = async (req: Request, res: Response) => {
+    console.log("res.locals.user >>>", res.locals.user);
+
+    const authUser = res.locals.user;
+    if (!authUser?.id) {
+      return res.status(401).json({ success: false, message: 'Unauthorized: No user ID found' });
+    }
+
+    const result = await this.eventService.getOrganizerEvents(authUser.id);
+    res.status(200).send(result);
+  };
 }

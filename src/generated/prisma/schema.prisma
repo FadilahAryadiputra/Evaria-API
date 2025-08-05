@@ -119,7 +119,7 @@ model Event {
 
 model EventTicket {
   id          String @id @default(uuid())
-  title       String
+  title       String @unique
   price       Int
   description String
   limit       Int

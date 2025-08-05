@@ -4,6 +4,7 @@ import { UploaderMiddleware } from '../../middlewares/uploader.middleware';
 import { validateBody } from '../../middlewares/validate.middleware';
 import { CreateEventDTO } from './dto/create-event.dto';
 import { JwtMiddleware } from '../../middlewares/jwt.middleware';
+import { CreateEventTicketDTO } from '../event-ticket/dto/create-event-ticket.dto';
 
 export class EventRouter {
   private router: Router;
@@ -31,6 +32,22 @@ export class EventRouter {
       validateBody(CreateEventDTO),
       this.eventController.createEvent
     );
+    this.router.post(
+      '/create-event-ticket',
+      this.jwtMiddleware.verifyToken(process.env.JWT_SECRET_KEY!),
+      validateBody(CreateEventTicketDTO),
+      this.eventController.createEventTicket
+    );
+    this.router.get(
+      '/get-organizer-events',
+      this.jwtMiddleware.verifyToken(process.env.JWT_SECRET_KEY!),
+      this.eventController.getOrganizerEvents
+    )
+    this.router.get(
+      '/session-login',
+      this.jwtMiddleware.verifyToken(process.env.JWT_SECRET_KEY!),
+      this.eventController.authSessionLogin
+    )
   }
 
   getRouter = () => {
