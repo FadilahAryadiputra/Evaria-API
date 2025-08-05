@@ -6522,7 +6522,8 @@ export namespace Prisma {
     code: string | null
     discount: number | null
     quota: number | null
-    expiredDate: Date | null
+    startDate: Date | null
+    endDate: Date | null
     createdAt: Date | null
     updatedAt: Date | null
     deletedAt: Date | null
@@ -6533,7 +6534,8 @@ export namespace Prisma {
     code: string | null
     discount: number | null
     quota: number | null
-    expiredDate: Date | null
+    startDate: Date | null
+    endDate: Date | null
     createdAt: Date | null
     updatedAt: Date | null
     deletedAt: Date | null
@@ -6544,7 +6546,8 @@ export namespace Prisma {
     code: number
     discount: number
     quota: number
-    expiredDate: number
+    startDate: number
+    endDate: number
     createdAt: number
     updatedAt: number
     deletedAt: number
@@ -6567,7 +6570,8 @@ export namespace Prisma {
     code?: true
     discount?: true
     quota?: true
-    expiredDate?: true
+    startDate?: true
+    endDate?: true
     createdAt?: true
     updatedAt?: true
     deletedAt?: true
@@ -6578,7 +6582,8 @@ export namespace Prisma {
     code?: true
     discount?: true
     quota?: true
-    expiredDate?: true
+    startDate?: true
+    endDate?: true
     createdAt?: true
     updatedAt?: true
     deletedAt?: true
@@ -6589,7 +6594,8 @@ export namespace Prisma {
     code?: true
     discount?: true
     quota?: true
-    expiredDate?: true
+    startDate?: true
+    endDate?: true
     createdAt?: true
     updatedAt?: true
     deletedAt?: true
@@ -6687,7 +6693,8 @@ export namespace Prisma {
     code: string
     discount: number
     quota: number
-    expiredDate: Date
+    startDate: Date
+    endDate: Date
     createdAt: Date
     updatedAt: Date
     deletedAt: Date | null
@@ -6717,7 +6724,8 @@ export namespace Prisma {
     code?: boolean
     discount?: boolean
     quota?: boolean
-    expiredDate?: boolean
+    startDate?: boolean
+    endDate?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     deletedAt?: boolean
@@ -6731,7 +6739,8 @@ export namespace Prisma {
     code?: boolean
     discount?: boolean
     quota?: boolean
-    expiredDate?: boolean
+    startDate?: boolean
+    endDate?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     deletedAt?: boolean
@@ -6743,7 +6752,8 @@ export namespace Prisma {
     code?: boolean
     discount?: boolean
     quota?: boolean
-    expiredDate?: boolean
+    startDate?: boolean
+    endDate?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     deletedAt?: boolean
@@ -6755,14 +6765,15 @@ export namespace Prisma {
     code?: boolean
     discount?: boolean
     quota?: boolean
-    expiredDate?: boolean
+    startDate?: boolean
+    endDate?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     deletedAt?: boolean
     eventId?: boolean
   }
 
-  export type VoucherOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"code" | "discount" | "quota" | "expiredDate" | "createdAt" | "updatedAt" | "deletedAt" | "eventId", ExtArgs["result"]["voucher"]>
+  export type VoucherOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"code" | "discount" | "quota" | "startDate" | "endDate" | "createdAt" | "updatedAt" | "deletedAt" | "eventId", ExtArgs["result"]["voucher"]>
   export type VoucherInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     event?: boolean | EventDefaultArgs<ExtArgs>
     transactions?: boolean | Voucher$transactionsArgs<ExtArgs>
@@ -6785,7 +6796,8 @@ export namespace Prisma {
       code: string
       discount: number
       quota: number
-      expiredDate: Date
+      startDate: Date
+      endDate: Date
       createdAt: Date
       updatedAt: Date
       deletedAt: Date | null
@@ -7218,7 +7230,8 @@ export namespace Prisma {
     readonly code: FieldRef<"Voucher", 'String'>
     readonly discount: FieldRef<"Voucher", 'Int'>
     readonly quota: FieldRef<"Voucher", 'Int'>
-    readonly expiredDate: FieldRef<"Voucher", 'DateTime'>
+    readonly startDate: FieldRef<"Voucher", 'DateTime'>
+    readonly endDate: FieldRef<"Voucher", 'DateTime'>
     readonly createdAt: FieldRef<"Voucher", 'DateTime'>
     readonly updatedAt: FieldRef<"Voucher", 'DateTime'>
     readonly deletedAt: FieldRef<"Voucher", 'DateTime'>
@@ -10100,7 +10113,8 @@ export namespace Prisma {
     code: 'code',
     discount: 'discount',
     quota: 'quota',
-    expiredDate: 'expiredDate',
+    startDate: 'startDate',
+    endDate: 'endDate',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt',
     deletedAt: 'deletedAt',
@@ -10656,7 +10670,8 @@ export namespace Prisma {
     code?: StringFilter<"Voucher"> | string
     discount?: IntFilter<"Voucher"> | number
     quota?: IntFilter<"Voucher"> | number
-    expiredDate?: DateTimeFilter<"Voucher"> | Date | string
+    startDate?: DateTimeFilter<"Voucher"> | Date | string
+    endDate?: DateTimeFilter<"Voucher"> | Date | string
     createdAt?: DateTimeFilter<"Voucher"> | Date | string
     updatedAt?: DateTimeFilter<"Voucher"> | Date | string
     deletedAt?: DateTimeNullableFilter<"Voucher"> | Date | string | null
@@ -10669,7 +10684,8 @@ export namespace Prisma {
     code?: SortOrder
     discount?: SortOrder
     quota?: SortOrder
-    expiredDate?: SortOrder
+    startDate?: SortOrder
+    endDate?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     deletedAt?: SortOrderInput | SortOrder
@@ -10685,7 +10701,8 @@ export namespace Prisma {
     NOT?: VoucherWhereInput | VoucherWhereInput[]
     discount?: IntFilter<"Voucher"> | number
     quota?: IntFilter<"Voucher"> | number
-    expiredDate?: DateTimeFilter<"Voucher"> | Date | string
+    startDate?: DateTimeFilter<"Voucher"> | Date | string
+    endDate?: DateTimeFilter<"Voucher"> | Date | string
     createdAt?: DateTimeFilter<"Voucher"> | Date | string
     updatedAt?: DateTimeFilter<"Voucher"> | Date | string
     deletedAt?: DateTimeNullableFilter<"Voucher"> | Date | string | null
@@ -10698,7 +10715,8 @@ export namespace Prisma {
     code?: SortOrder
     discount?: SortOrder
     quota?: SortOrder
-    expiredDate?: SortOrder
+    startDate?: SortOrder
+    endDate?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     deletedAt?: SortOrderInput | SortOrder
@@ -10717,7 +10735,8 @@ export namespace Prisma {
     code?: StringWithAggregatesFilter<"Voucher"> | string
     discount?: IntWithAggregatesFilter<"Voucher"> | number
     quota?: IntWithAggregatesFilter<"Voucher"> | number
-    expiredDate?: DateTimeWithAggregatesFilter<"Voucher"> | Date | string
+    startDate?: DateTimeWithAggregatesFilter<"Voucher"> | Date | string
+    endDate?: DateTimeWithAggregatesFilter<"Voucher"> | Date | string
     createdAt?: DateTimeWithAggregatesFilter<"Voucher"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Voucher"> | Date | string
     deletedAt?: DateTimeNullableWithAggregatesFilter<"Voucher"> | Date | string | null
@@ -11325,7 +11344,8 @@ export namespace Prisma {
     code: string
     discount: number
     quota: number
-    expiredDate: Date | string
+    startDate: Date | string
+    endDate: Date | string
     createdAt?: Date | string
     updatedAt?: Date | string
     deletedAt?: Date | string | null
@@ -11337,7 +11357,8 @@ export namespace Prisma {
     code: string
     discount: number
     quota: number
-    expiredDate: Date | string
+    startDate: Date | string
+    endDate: Date | string
     createdAt?: Date | string
     updatedAt?: Date | string
     deletedAt?: Date | string | null
@@ -11349,7 +11370,8 @@ export namespace Prisma {
     code?: StringFieldUpdateOperationsInput | string
     discount?: IntFieldUpdateOperationsInput | number
     quota?: IntFieldUpdateOperationsInput | number
-    expiredDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -11361,7 +11383,8 @@ export namespace Prisma {
     code?: StringFieldUpdateOperationsInput | string
     discount?: IntFieldUpdateOperationsInput | number
     quota?: IntFieldUpdateOperationsInput | number
-    expiredDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -11373,7 +11396,8 @@ export namespace Prisma {
     code: string
     discount: number
     quota: number
-    expiredDate: Date | string
+    startDate: Date | string
+    endDate: Date | string
     createdAt?: Date | string
     updatedAt?: Date | string
     deletedAt?: Date | string | null
@@ -11384,7 +11408,8 @@ export namespace Prisma {
     code?: StringFieldUpdateOperationsInput | string
     discount?: IntFieldUpdateOperationsInput | number
     quota?: IntFieldUpdateOperationsInput | number
-    expiredDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -11394,7 +11419,8 @@ export namespace Prisma {
     code?: StringFieldUpdateOperationsInput | string
     discount?: IntFieldUpdateOperationsInput | number
     quota?: IntFieldUpdateOperationsInput | number
-    expiredDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -11993,7 +12019,8 @@ export namespace Prisma {
     code?: SortOrder
     discount?: SortOrder
     quota?: SortOrder
-    expiredDate?: SortOrder
+    startDate?: SortOrder
+    endDate?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     deletedAt?: SortOrder
@@ -12009,7 +12036,8 @@ export namespace Prisma {
     code?: SortOrder
     discount?: SortOrder
     quota?: SortOrder
-    expiredDate?: SortOrder
+    startDate?: SortOrder
+    endDate?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     deletedAt?: SortOrder
@@ -12020,7 +12048,8 @@ export namespace Prisma {
     code?: SortOrder
     discount?: SortOrder
     quota?: SortOrder
-    expiredDate?: SortOrder
+    startDate?: SortOrder
+    endDate?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     deletedAt?: SortOrder
@@ -13279,7 +13308,8 @@ export namespace Prisma {
     code: string
     discount: number
     quota: number
-    expiredDate: Date | string
+    startDate: Date | string
+    endDate: Date | string
     createdAt?: Date | string
     updatedAt?: Date | string
     deletedAt?: Date | string | null
@@ -13290,7 +13320,8 @@ export namespace Prisma {
     code: string
     discount: number
     quota: number
-    expiredDate: Date | string
+    startDate: Date | string
+    endDate: Date | string
     createdAt?: Date | string
     updatedAt?: Date | string
     deletedAt?: Date | string | null
@@ -13441,7 +13472,8 @@ export namespace Prisma {
     code?: StringFilter<"Voucher"> | string
     discount?: IntFilter<"Voucher"> | number
     quota?: IntFilter<"Voucher"> | number
-    expiredDate?: DateTimeFilter<"Voucher"> | Date | string
+    startDate?: DateTimeFilter<"Voucher"> | Date | string
+    endDate?: DateTimeFilter<"Voucher"> | Date | string
     createdAt?: DateTimeFilter<"Voucher"> | Date | string
     updatedAt?: DateTimeFilter<"Voucher"> | Date | string
     deletedAt?: DateTimeNullableFilter<"Voucher"> | Date | string | null
@@ -13923,7 +13955,8 @@ export namespace Prisma {
     code: string
     discount: number
     quota: number
-    expiredDate: Date | string
+    startDate: Date | string
+    endDate: Date | string
     createdAt?: Date | string
     updatedAt?: Date | string
     deletedAt?: Date | string | null
@@ -13934,7 +13967,8 @@ export namespace Prisma {
     code: string
     discount: number
     quota: number
-    expiredDate: Date | string
+    startDate: Date | string
+    endDate: Date | string
     createdAt?: Date | string
     updatedAt?: Date | string
     deletedAt?: Date | string | null
@@ -14118,7 +14152,8 @@ export namespace Prisma {
     code?: StringFieldUpdateOperationsInput | string
     discount?: IntFieldUpdateOperationsInput | number
     quota?: IntFieldUpdateOperationsInput | number
-    expiredDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -14129,7 +14164,8 @@ export namespace Prisma {
     code?: StringFieldUpdateOperationsInput | string
     discount?: IntFieldUpdateOperationsInput | number
     quota?: IntFieldUpdateOperationsInput | number
-    expiredDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -14490,7 +14526,8 @@ export namespace Prisma {
     code: string
     discount: number
     quota: number
-    expiredDate: Date | string
+    startDate: Date | string
+    endDate: Date | string
     createdAt?: Date | string
     updatedAt?: Date | string
     deletedAt?: Date | string | null
@@ -14525,7 +14562,8 @@ export namespace Prisma {
     code?: StringFieldUpdateOperationsInput | string
     discount?: IntFieldUpdateOperationsInput | number
     quota?: IntFieldUpdateOperationsInput | number
-    expiredDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -14536,7 +14574,8 @@ export namespace Prisma {
     code?: StringFieldUpdateOperationsInput | string
     discount?: IntFieldUpdateOperationsInput | number
     quota?: IntFieldUpdateOperationsInput | number
-    expiredDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -14547,7 +14586,8 @@ export namespace Prisma {
     code?: StringFieldUpdateOperationsInput | string
     discount?: IntFieldUpdateOperationsInput | number
     quota?: IntFieldUpdateOperationsInput | number
-    expiredDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null

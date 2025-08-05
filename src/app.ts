@@ -14,6 +14,7 @@ import "reflect-metadata";
 import { AuthRouter } from './modules/auth/auth.router';
 import { EventRouter } from './modules/event/event.router';
 import { EventTicketRouter } from './modules/event-ticket/event.ticket.router';
+import { EventVoucherRouter } from './modules/event-voucher/event.voucher.router';
 
 export default class App {
   private app: Express;
@@ -77,6 +78,7 @@ export default class App {
     const authRouter = new AuthRouter();
     const eventRouter = new EventRouter();
     const eventTicketRouter = new EventTicketRouter();
+    const eventVoucherRouter = new EventVoucherRouter();
 
     this.app.get('/api', (req: Request, res: Response) => {
       res.send(`Hello, Purwadhika Student API!`);
@@ -84,6 +86,7 @@ export default class App {
     this.app.use('/api/auth', authRouter.getRouter());
     this.app.use('/api/events', eventRouter.getRouter())
     this.app.use('/api/event-tickets', eventTicketRouter.getRouter())
+    this.app.use('/api/event-vouchers', eventVoucherRouter.getRouter())
   }
 
   public start(): void {

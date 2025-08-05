@@ -1,16 +1,12 @@
-import { Organizer, User } from '../../generated/prisma';
 import { ApiError } from '../../utils/api-error';
-import { CloudinaryService } from '../cloudinary/cloudinary.service';
 import { PrismaService } from '../prisma/prisma.service';
 import { CreateEventTicketDTO } from './dto/create-event-ticket.dto';
 
 export class EventTicketService {
   private prisma: PrismaService;
-  private cloudinaryService: CloudinaryService;
 
   constructor() {
     this.prisma = new PrismaService();
-    this.cloudinaryService = new CloudinaryService();
   }
 
   createEventTicket = async (
@@ -18,7 +14,7 @@ export class EventTicketService {
     authUser: { id: string; role: string }
   ) => {
     if(authUser.role !== 'ORGANIZER') {
-      throw new ApiError('Only organizers can create an event', 403);
+      throw new ApiError('Only organizers can create an event ticket', 403);
     }
 
     const event = await this.prisma.event.findFirst({
@@ -35,7 +31,7 @@ export class EventTicketService {
       },
     });
     if (eventTicket) {
-      throw new ApiError('Event ticket already exists for this event', 400);
+      throw new ApiError('Event ticket title already exists for this event', 400);
     }
 
     await this.prisma.eventTicket.create({
