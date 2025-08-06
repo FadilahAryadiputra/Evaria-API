@@ -48,7 +48,7 @@ export default class App {
       }
     });
 
-    // expiryTransactionSchedul();
+    expiryTransactionSchedul();
 
     // Error Handler
     this.app.use(
