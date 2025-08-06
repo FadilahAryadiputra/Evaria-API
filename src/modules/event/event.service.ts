@@ -180,8 +180,6 @@ export class EventService {
     if(!authUser.id) {
       throw new ApiError('User not found', 404);
     }
-    console.log(authUser)
-    console.log(">>>")
     const events = await this.prisma.event.findMany({
       where: { organizerId: authUser.id },
     });

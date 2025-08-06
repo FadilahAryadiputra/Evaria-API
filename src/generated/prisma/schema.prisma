@@ -46,7 +46,7 @@ enum EventLocation {
 }
 
 enum TransactionStatus {
-  WAITING_PAYMENT
+  WAITING_FOR_PAYMENT
   WAITING_FOR_CONFIRMATION
   DONE
   REJECTED
@@ -81,11 +81,10 @@ model Organizer {
   role           UserRole @default(ORGANIZER)
   profilePicture String   @default("UserImgPlaceholder.jpg")
 
-  createdAt    DateTime      @default(now())
-  updatedAt    DateTime      @updatedAt
-  deletedAt    DateTime?
-  events       Event[]
-  transactions Transaction[]
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+  events    Event[]
 
   @@map("organizers")
 }
@@ -111,8 +110,8 @@ model Event {
   organizerId  String
   organizer    Organizer     @relation(fields: [organizerId], references: [id])
   vouchers     Voucher[]
-  transactions Transaction[]
   eventTickets EventTicket[]
+  transactions Transaction[]
 
   @@map("events")
 }
@@ -128,9 +127,10 @@ model EventTicket {
   updatedAt DateTime  @updatedAt
   deletedAt DateTime?
 
-  eventId String
-  event   Event    @relation(fields: [eventId], references: [id])
-  Ticket  Ticket[]
+  eventId      String
+  event        Event         @relation(fields: [eventId], references: [id])
+  tickets      Ticket[]
+  transactions Transaction[]
 
   @@map("event_tickets")
 }
@@ -155,24 +155,26 @@ model Voucher {
 
 model Transaction {
   id           String            @id @default(uuid())
+  quantity     Int
   pointUsed    Int?
-  totalPrice   Int
+  totalPrice   Int               @default(0)
   paymentProof String?
-  status       TransactionStatus @default(WAITING_PAYMENT)
+  expiredAt    DateTime
+  status       TransactionStatus @default(WAITING_FOR_PAYMENT)
 
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
   deletedAt DateTime?
 
-  userId      String
-  user        User      @relation(fields: [userId], references: [id])
-  eventId     String
-  event       Event     @relation(fields: [eventId], references: [id])
-  organizerId String
-  organizer   Organizer @relation(fields: [organizerId], references: [id])
-  voucherCode String?
-  voucher     Voucher?  @relation(fields: [voucherCode], references: [code])
-  tickets     Ticket[]
+  userId        String
+  user          User        @relation(fields: [userId], references: [id])
+  eventId       String
+  event         Event       @relation(fields: [eventId], references: [id])
+  eventTicketId String
+  eventTicket   EventTicket @relation(fields: [eventTicketId], references: [id])
+  voucherCode   String?
+  voucher       Voucher?    @relation(fields: [voucherCode], references: [code])
+  tickets       Ticket[]
 
   @@map("transactions")
 }
