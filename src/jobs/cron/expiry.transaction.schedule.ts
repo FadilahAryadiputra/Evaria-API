@@ -5,7 +5,7 @@ export const expiryTransactionSchedul = () => {
   console.log("Starting...");
   const job = new expiryTransactionJob();
 
-  cron.schedule('* * * * *', async () => {
+  cron.schedule('*/5 * * * *', async () => {
     console.log('[⌚ CRON] Executed...');
     await job.expiryTransactionSchedul();
   });
