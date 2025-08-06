@@ -25,7 +25,6 @@ export class AuthController {
 
   authSessionLogin = async (req: Request, res: Response) => {
     const user = res.locals.user;
-    console.log(user)
     const sessionData = await this.authService.authSessionLogin({ id: user.id });
     res.status(200).json({
       success: true,

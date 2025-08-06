@@ -191,16 +191,18 @@ exports.Prisma.VoucherScalarFieldEnum = {
 
 exports.Prisma.TransactionScalarFieldEnum = {
   id: 'id',
+  quantity: 'quantity',
   pointUsed: 'pointUsed',
   totalPrice: 'totalPrice',
   paymentProof: 'paymentProof',
+  expiredAt: 'expiredAt',
   status: 'status',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
   deletedAt: 'deletedAt',
   userId: 'userId',
   eventId: 'eventId',
-  organizerId: 'organizerId',
+  eventTicketId: 'eventTicketId',
   voucherCode: 'voucherCode'
 };
 
@@ -259,7 +261,7 @@ exports.EventLocation = exports.$Enums.EventLocation = {
 };
 
 exports.TransactionStatus = exports.$Enums.TransactionStatus = {
-  WAITING_PAYMENT: 'WAITING_PAYMENT',
+  WAITING_FOR_PAYMENT: 'WAITING_FOR_PAYMENT',
   WAITING_FOR_CONFIRMATION: 'WAITING_FOR_CONFIRMATION',
   DONE: 'DONE',
   REJECTED: 'REJECTED',

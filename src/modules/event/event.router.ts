@@ -42,12 +42,12 @@ export class EventRouter {
       '/get-organizer-events',
       this.jwtMiddleware.verifyToken(process.env.JWT_SECRET_KEY!),
       this.eventController.getOrganizerEvents
-    )
+    );
     this.router.get(
       '/session-login',
       this.jwtMiddleware.verifyToken(process.env.JWT_SECRET_KEY!),
       this.eventController.authSessionLogin
-    )
+    );
   }
 
   getRouter = () => {

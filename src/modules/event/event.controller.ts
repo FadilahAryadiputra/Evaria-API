@@ -44,7 +44,6 @@ export class EventController {
 
   authSessionLogin = async (req: Request, res: Response) => {
     const user = res.locals.user;
-    console.log(user)
     const sessionData = await this.eventService.authSessionLogin({ id: user.id });
     res.status(200).json({
       success: true,
@@ -54,8 +53,6 @@ export class EventController {
   };
 
   getOrganizerEvents = async (req: Request, res: Response) => {
-    console.log("res.locals.user >>>", res.locals.user);
-
     const authUser = res.locals.user;
     if (!authUser?.id) {
       return res.status(401).json({ success: false, message: 'Unauthorized: No user ID found' });

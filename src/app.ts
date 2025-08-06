@@ -5,16 +5,18 @@ import express, {
   NextFunction,
   Request,
   Response,
-  urlencoded
+  urlencoded,
 } from 'express';
 import { PORT } from './config';
 import { ApiError } from './utils/api-error';
 
-import "reflect-metadata";
+import 'reflect-metadata';
 import { AuthRouter } from './modules/auth/auth.router';
 import { EventRouter } from './modules/event/event.router';
 import { EventTicketRouter } from './modules/event-ticket/event.ticket.router';
 import { EventVoucherRouter } from './modules/event-voucher/event.voucher.router';
+import { TransactionRouter } from './modules/transaction/transaction.router';
+import { expiryTransactionSchedul } from './jobs/cron/expiry.transaction.schedule';
 
 export default class App {
   private app: Express;
@@ -45,6 +47,8 @@ export default class App {
         next();
       }
     });
+
+    // expiryTransactionSchedul();
 
     // Error Handler
     this.app.use(
@@ -79,14 +83,16 @@ export default class App {
     const eventRouter = new EventRouter();
     const eventTicketRouter = new EventTicketRouter();
     const eventVoucherRouter = new EventVoucherRouter();
+    const transactionRouter = new TransactionRouter();
 
     this.app.get('/api', (req: Request, res: Response) => {
       res.send(`Hello, Purwadhika Student API!`);
     });
     this.app.use('/api/auth', authRouter.getRouter());
-    this.app.use('/api/events', eventRouter.getRouter())
-    this.app.use('/api/event-tickets', eventTicketRouter.getRouter())
-    this.app.use('/api/event-vouchers', eventVoucherRouter.getRouter())
+    this.app.use('/api/events', eventRouter.getRouter());
+    this.app.use('/api/event-tickets', eventTicketRouter.getRouter());
+    this.app.use('/api/event-vouchers', eventVoucherRouter.getRouter());
+    this.app.use('/api/transactions', transactionRouter.getRouter());
   }
 
   public start(): void {
