@@ -1,13 +1,18 @@
 {
   "compilerOptions": {
-    "target": "ES6",
-    "module": "commonjs",
-    "outDir": "./dist",
-    "rootDir": "./src",
-    "strict": true,
-    "esModuleInterop": true,
-    "skipLibCheck": true,
-    "experimentalDecorators": true,
-    "emitDecoratorMetadata": true
-  }
+    "target": "ES2020",                          // ES6 is fine, but ES2020 allows optional chaining, nullish coalescing, etc.
+    "module": "commonjs",                        // Required for Vercel + Node compatibility
+    "outDir": "./dist",                          // Compiled output folder
+    "rootDir": "./src",                          // Your TypeScript source code location
+    "strict": true,                              // Enable all strict type-checking
+    "esModuleInterop": true,                     // Allow default import syntax for CommonJS modules
+    "moduleResolution": "node",                  // Resolve modules like Node.js does
+    "resolveJsonModule": true,                   // Allow importing `.json` files
+    "skipLibCheck": true,                        // Speeds up build, avoids some noise
+    "forceConsistentCasingInFileNames": true,    // Prevent casing issues across OSes
+    "experimentalDecorators": true,              // Needed for `class-validator`, `class-transformer`, etc.
+    "emitDecoratorMetadata": true                // Required for TypeORM, routing-controllers, etc.
+  },
+  "include": ["src/**/*"],                       // Compile everything inside /src
+  "exclude": ["node_modules", "dist"]            // Ignore these folders
 }
