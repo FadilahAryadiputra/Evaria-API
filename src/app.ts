@@ -28,19 +28,36 @@ export default class App {
     this.handleError();
   }
 
+  public getApp(): Express {
+    return this.app;
+  }
+
+  // Local dev server only
+  public start(): void {
+    this.app.listen(PORT, () => {
+      console.log(`  ➜ [API] Local: http://localhost:${PORT}/`);
+    });
+  }
+
   private configure(): void {
-    const allowedOrigins = ['http://localhost:3000', 'https://evaria-fe.vercel.app'];
-    this.app.use(cors({
-      origin: (origin, callback) => {
-        if (!origin || allowedOrigins.includes(origin)) {
-          callback(null, true);
-        } else {
-          callback(new Error('Not allowed by CORS'));
-        }
-      },
-      credentials: true,
-    }));
-    
+    const allowedOrigins = [
+      'http://localhost:3000',
+      'https://evaria-fe.vercel.app',
+    ];
+
+    this.app.use(
+      cors({
+        origin: (origin, callback) => {
+          if (!origin || allowedOrigins.includes(origin)) {
+            callback(null, true);
+          } else {
+            callback(new Error('Not allowed by CORS'));
+          }
+        },
+        credentials: true,
+      })
+    );
+
     this.app.use(json());
     this.app.use(urlencoded({ extended: true }));
   }
@@ -49,11 +66,9 @@ export default class App {
     // Not Found Handler
     this.app.use((req: Request, res: Response, next: NextFunction) => {
       if (req.path.includes('/api/')) {
-        res
-          .status(404)
-          .send(
-            'We are sorry, the endpoint you are trying to access could not be found on this server. Please ensure the URL is correct!'
-          );
+        res.status(404).send(
+          'We are sorry, the endpoint you are trying to access could not be found on this server. Please ensure the URL is correct!'
+        );
       } else {
         next();
       }
@@ -64,7 +79,7 @@ export default class App {
     // Error Handler
     this.app.use(
       (error: any, req: Request, res: Response, next: NextFunction) => {
-        console.log(error);
+        console.error(error);
         const statusCode =
           error.statusCode ||
           (error.name === 'TokenExpiredError' ||
@@ -99,16 +114,11 @@ export default class App {
     this.app.get('/api', (req: Request, res: Response) => {
       res.send(`Hello, Purwadhika Student API!`);
     });
+
     this.app.use('/api/auth', authRouter.getRouter());
     this.app.use('/api/events', eventRouter.getRouter());
     this.app.use('/api/event-tickets', eventTicketRouter.getRouter());
     this.app.use('/api/event-vouchers', eventVoucherRouter.getRouter());
     this.app.use('/api/transactions', transactionRouter.getRouter());
-  }
-
-  public start(): void {
-    this.app.listen(PORT, () => {
-      console.log(`  ➜ [API] Local:   http://localhost:${PORT}/`);
-    });
   }
 }
